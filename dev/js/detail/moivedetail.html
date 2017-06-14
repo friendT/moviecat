@@ -1,0 +1,48 @@
+<h1>电影信息</h1>
+<section class="movie-detail" ng-controller="detailController">
+    <div ng-show="casts.length==0?false:true">
+        <div class="movie-left clearfix">
+            <h3>{{title}}</h3>
+            <ul class="list-group">
+                <li class="list-group-item">中文名：{{original_title}}</li>
+                <li class="list-group-item">
+                    原名：<span ng-repeat="ak in aka">{{ak}}<em ng-show="{{!$last}}">、</em></span></li>
+                <li class="list-group-item">导演：<span ng-repeat="data in directors">{{data.name}}<em ng-show="{{!$last}}">、</em></span></li>
+                <li class="list-group-item">
+                    演员：<span ng-repeat="cast in casts">{{cast.name}}<em ng-show="{{!$last}}">、</em></span></li>
+                <li class="list-group-item">
+                    类型：<span ng-repeat="gen in genres">{{gen}}<em ng-show="{{!$last}}">、</em></span></li>
+                <li class="list-group-item">制片国家/地区：<span ng-repeat="county in countries">{{county}}<em ng-show="{{!$last}}">、</em></span></li>
+                <li class="list-group-item">年代：{{year}}</li>
+            </ul>
+        </div>
+        <div class="movie-right clearfix">
+            <img ng-src="{{src}}" alt="">
+        </div>
+        <p>{{summary}}</p>
+    </div>
+    <!-- loading -->
+    <section class="loading" ng-show="casts.length==0?true:false">
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h1>Loading...</h1>
+    </section>
+</section>

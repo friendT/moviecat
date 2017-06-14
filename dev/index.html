@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--<link rel="icon" href="../../favicon.ico">-->
+    <title>豆瓣电影</title>
+    <!-- Bootstrap core CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="./css/dashboard.css" rel="stylesheet">
+    <style>
+    body {
+        padding-right: 10px;
+    }
+    
+    div.myseach form {
+        position: absolute;
+        right: 30px;
+        top: 8px;
+    }
+    
+    .media {
+        width: 100%;
+        margin: 10px 10px;
+        transition: margin-left linear 0.3s;
+    }
+    
+    .media img {
+        width: 80px;
+        height: 120px;
+    }
+    
+    .media .media-body {
+        margin-left: 10px;
+    }
+    
+    .media p {
+        margin-bottom: 0;
+    }
+    
+    .media .badge {
+        color: #ffffff;
+        background-color: #777;
+        border-radius: 10px;
+        margin-right: 10px;
+    }
+    
+    .media:hover {
+        background-color: #c2ccd1;
+        margin-left: 2px;
+    }
+    
+    .moive-count {
+        font-size: 14px;
+    }
+    
+    ul.pager {
+        list-style: none;
+        margin: 0 auto;
+        width: 280px;
+    }
+    /*清除浮动*/
+    
+    .clearfix::before,
+    .clearfix::after {
+        content: " ";
+        display: table;
+    }
+    
+    .clearfix::after {
+        clear: both;
+    }
+    /*.clearfix() {
+        &:before,
+        &:after {}
+        &:after {}
+    }
+    
+    // Usage as a mixin
+    .element {
+        .clearfix();
+    }*/
+    /*.clearfix::before {
+        contain: "";
+        clear: both;
+        font-size: 0;
+    }
+    */
+    
+    ul.pager li {
+        float: left;
+    }
+    
+    ul.pager li a {
+        display: inline-block;
+        padding: 5px 10px;
+        border: 1px solid #ccc;
+        border-radius: 15px;
+        margin-left: 10px;
+    }
+    
+    ul.pager li a:hover {
+        text-decoration: none;
+        color: #fff !important;
+        background-color: #c0c0c0;
+    }
+    
+    .movie-detail {
+        position: relative;
+    }
+    
+    div.movie-left {
+        margin-top: 20px;
+        margin-left: 30px;
+    }
+    
+    div.movie-left .list-group li {
+        border: 0;
+    }
+    
+    div.movie-right {
+        position: absolute;
+        right: 30px;
+        top: 0px;
+    }
+    
+    div.movie-right img {
+        height: 400px;
+    }
+    
+    .movie-detail p {
+        margin-top: 30px;
+        margin-left: 30px;
+        text-indent: 2em;
+    }
+    /*loading加载*/
+    /*@import url(http://fonts.googleapis.com/css?family=Meie+Script);*/
+    
+    .loading {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.3);
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        padding-top: 250px;
+        z-index: 1000;
+    }
+    
+    .loading div {
+        border-left: 5px solid #fa2b7e;
+        border-right: 5px solid #550062;
+        /* line-height:0;*/
+        display: inline-block;
+        border-radius: 100%;
+        -webkit-animation: Move 4s linear infinite;
+        -moz-animation: Move 4s linear infinite;
+        -ms-animation: Move 4s linear infinite;
+        -o-animation: Move 4s linear infinite;
+        animation: Move 4s linear infinite;
+        z-index: 2;
+    }
+    
+    .loading h1 {
+        margin-top: 50px;
+        font-family: Meie Script;
+        color: #cd17b1;
+        text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+        -webkit-animation: Opa .5s ease-in-out infinite alternate;
+        -moz-animation: Opa .5s ease-in-out infinite alternate;
+        -ms-animation: Opa .5s ease-in-out infinite alternate;
+        -o-animation: Opa .5s ease-in-out infinite alternate;
+        animation: Opa .5s ease-in-out infinite alternate;
+        border: 0;
+    }
+    
+    @-webkit-keyframes Move {
+        0% {
+            -webkit-transform: rotate(90deg);
+        }
+        100% {
+            -webkit-transform: rotate(-90deg);
+        }
+    }
+    
+    @-moz-keyframes Move {
+        0% {
+            -moz-transform: rotate(90deg);
+        }
+        100% {
+            -moz-transform: rotate(-90deg);
+        }
+    }
+    
+    @-ms-keyframes Move {
+        0% {
+            -ms-transform: rotate(90deg);
+        }
+        100% {
+            -ms-transform: rotate(-90deg);
+        }
+    }
+    
+    @-o-keyframes Move {
+        0% {
+            -o-transform: rotate(90deg);
+        }
+        100% {
+            -o-transform: rotate(-90deg);
+        }
+    }
+    
+    @keyframes Move {
+        0% {
+            transform: rotate(90deg);
+        }
+        100% {
+            transform: rotate(-90deg);
+        }
+    }
+    
+    @-webkit-keyframes Opa {
+        from {
+            opacity: 100%;
+        }
+        to {
+            opacity: 0;
+            margin-top: 60px;
+        }
+    }
+    
+    @-moz-keyframes Opa {
+        from {
+            opacity: 100%;
+        }
+        to {
+            opacity: 0;
+            margin-top: 60px;
+        }
+    }
+    
+    @-ms-keyframes Opa {
+        from {
+            opacity: 100%;
+        }
+        to {
+            opacity: 0;
+            margin-top: 60px;
+        }
+    }
+    
+    @-o-keyframes Opa {
+        from {
+            opacity: 100%;
+        }
+        to {
+            opacity: 0;
+            margin-top: 60px;
+        }
+    }
+    /* @-keyframes Opa {
+             from {
+                 opacity: 100%;
+             }
+
+             to {
+                 opacity: 0;
+                 margin-top: 60px;
+             }
+         }
+ */
+    </style>
+</head>
+
+<body ng-app="moivemodule">
+    <nav class="navbar navbar-expand-md navbar-inverse fixed-top bg-inverse">
+        <a class="navbar-brand" href="#">豆瓣电影</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        </button>
+        <div class="navbar-collapse myseach" id="navbarsExampleDefault" ng-controller="searchController">
+            <form class="form-inline mt-2 mt-md-0" ng-submit="search()">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" ng-model="searchText">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" ng-click="search()">搜索</button>
+            </form>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <!--左侧菜单列表-->
+        <div class="row">
+            <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-faded sidebar">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item" active-focus>
+                        <a class="nav-link" href="#/in_theaters/1">正在热映</a>
+                    </li>
+                    <li class="nav-item" active-focus>
+                        <a class="nav-link" href="#/coming_soon/1">即将上映</a>
+                    </li>
+                    <li class="nav-item" active-focus>
+                        <a class="nav-link" href="#/top250/1">排行榜</a>
+                    </li>
+                </ul>
+            </nav>
+            <!--右侧信息内容-->
+            <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" ng-view>
+            </main>
+            <script id="moiveList" type="text/ng-template">
+                <h1>{{title}}</h1>
+                <div class="list-group">
+                    <a ng-repeat="film in moives" href="#/subject/{{film.id}}" class="list-group-item">
+                        <div class="media">
+                            <div class="media-left">
+                                <img class="media-object" ng-src="{{film.images.large}}" alt="...">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">{{film.title}}</h4>
+                                <p>类型：<span ng-repeat="genres in film.genres">{{genres}}<em ng-show="!$last">、</em></span>
+                                </p>
+                                <p>导演：<span ng-repeat="dir in film.directors">{{dir.name}}<em ng-show="!$last">、</em></span>
+                                </p>
+                                <p>主演：<span ng-repeat="casts in film.casts">{{casts.name}}<em ng-show="!$last">、</em></span>
+                                </p>
+                            </div>
+                            <span class="badge">{{film.rating.average}}</span>
+                        </div>
+                    </a>
+                </div>
+                <!--列表信息-->
+                <div class="moive-count" ng-show="moives.length==0?false:true">
+                    总共：{{totalNum}}条记录，第{{page}}/{{totalPages}}页
+                </div>
+                <!--翻页-->
+                <ul class="pager clearfix" ng-show="moives.length==0?false:true">
+                    <li><a ng-click="prev()">←上一页</a></li>
+                    <li><a ng-click="next()">下一页→</a></li>
+                </ul>
+                <!--loading-->
+                <section class="loading" ng-show="moives.length==0?true:false">
+                    <div>
+                        <div>
+                            <div>
+                                <div>
+                                    <div>
+                                        <div>
+                                            <div>
+                                                <div>
+                                                    <div>
+                                                        <div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h1>Loading...</h1>
+                </section>
+            </script>
+        </div>
+    </div>
+    <!--loading等待加载-->
+</body>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="js/server/httpServer.js"></script>
+<script src="./js/detail/detailController.js"></script>
+<script src="js/controller/moiveController.js"></script>
+<script src="js/controller/active.js"></script>
+<script src="js/module/module.js"></script>
+
+</html>
